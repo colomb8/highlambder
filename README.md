@@ -12,12 +12,11 @@ Make your anonymous functions shorter, more expressive, and (let's be honest) ju
 
 You get concise, readable lambdas with operator overloading — no more `lambda x:` boilerplate.
 
----
-
 ## Installation
 
 ```bash
-pip install highlambder```
+pip install highlambder
+```
 
 ## Quick Examples
 
@@ -34,7 +33,8 @@ assert (10 * λ[1])([1, 2, 3]) == 20
 assert (-1 + λ * 5 / λ + 1)(13) == 5
 assert (λ * 2 + λ * 4 + λ)(10) == 70
 assert (λ['A'] + λ['B'])({'A': 3, 'B': 4}) == 7
-assert (λ + λ)(2) == 4```
+assert (λ + λ)(2) == 4
+```
 
 ## Works great with Pandas
 
@@ -58,7 +58,8 @@ assert pd.DataFrame.equals(
 assert pd.DataFrame.equals(
     df.assign(D=lambda d: d['C'].str.len() * 2),
     df.assign(D=λ['C'].str.len * 2)
-)```
+)
+```
 
 ## Why use Highlambder?
 
@@ -70,5 +71,3 @@ assert pd.DataFrame.equals(
 ## License
 
 [MIT](LICENSE)
-
-
