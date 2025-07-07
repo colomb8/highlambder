@@ -23,32 +23,37 @@ pip install highlambder
 ```python
 from highlambder import L as λ
 
-λ(10)  # -> 10
+λ (10)  # -> 10
 
-(λ + 5)(10)  # -> 15
+(λ + 5) (10)  # -> 15
 
-(λ * 5)(10)  # -> 50
+(λ * 5) (10)  # -> 50
 
-(3 + λ * 2)(10)  # -> 23
+(3 + λ * 2) (10)  # -> 23
 
-(40 / λ / 5)(2)  # -> 4
+(40 / λ / 5) (2)  # -> 4
 
-(10 * λ[1])([1, 2, 3])  # -> 20
+(10 * λ[1]) ([1, 2, 3])  # -> 20
 
-(-1 + λ * 5 / λ + 1)(13)  # -> 5
+(-1 + λ * 5 / λ + 1) (13)  # -> 5
 
-(λ * 2 + λ * 4 + λ)(10)  # -> 70
+(λ * 2 + λ * 4 + λ) (10)  # -> 70
 
-(λ['A'] + λ['B'])({'A': 3, 'B': 4})  # -> 7
+(λ['A'] + λ['B']) ({'A': 3, 'B': 4})  # -> 7
 
-(λ + λ)(2)  # -> 4
+(λ + λ) (2)  # -> 4
+
+("It's a Me, " + λ) ('Mario!') # ->  'It's a Me, Mario!'
 ```
 
-## Works great with Pandas
+## Work-in-progress: pandas and NumPy support
 
 ```python
 import pandas as pd
+import numpy as np
 from highlambder import L as λ
+
+# pandas:
 
 df = pd.DataFrame({
     'A': [1, 1, 2, 2],
@@ -67,6 +72,12 @@ assert pd.DataFrame.equals(
     df.assign(D=lambda d: d['C'].str.len() * 2),
     df.assign(D=λ['C'].str.len * 2)
 )
+
+# NumPy:
+
+assert (λ + λ)(np.int64(2)) == 4
+
+assert (λ.max - λ.min)(np.array([3, 4, 5, 6, 7, 8])) == 5
 ```
 
 ## Why use Highlambder?
@@ -75,6 +86,13 @@ assert pd.DataFrame.equals(
 - Composable — use math, indexing, or even method chaining.
 - Readable — especially useful in one-liners and pandas pipelines.
 - Fun — because code should bring you joy.
+
+## Limitations (for now)
+
+- Only single-argument functions are supported.
+- len(L) is not supported due to Python's limitations on overriding __len__ without a concrete value.
+
+These limitations may be lifted in future versions.
 
 ## License
 
