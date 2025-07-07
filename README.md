@@ -54,14 +54,12 @@ import numpy as np
 from highlambder import L as λ
 
 # pandas:
-
 df = pd.DataFrame({
     'A': [1, 1, 2, 2],
     'B': [5, 6, 7, 8],
     'C': ['banana', 'apple', 'kiwi', 'orange'],
 })
 
-# Traditional lambda
 assert pd.DataFrame.equals(
     df.assign(D=lambda d: d.A + 20),
     df.assign(D=λ.A + 20)
@@ -74,7 +72,6 @@ assert pd.DataFrame.equals(
 )
 
 # NumPy:
-
 assert (λ + λ)(np.int64(2)) == 4
 
 assert (λ.max - λ.min)(np.array([3, 4, 5, 6, 7, 8])) == 5
