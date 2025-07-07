@@ -80,13 +80,6 @@ assert (λ + λ)(np.int64(2)) == 4
 assert (λ.max - λ.min)(np.array([3, 4, 5, 6, 7, 8])) == 5
 ```
 
-## Why use Highlambder?
-
-- No need for lambda x: — just use λ as a placeholder.
-- Composable — use math, indexing, or even method chaining.
-- Readable — especially useful in one-liners and pandas pipelines.
-- Fun — because code should bring you joy.
-
 ## Limitations (for now)
 
 - Only single-argument functions are supported.
