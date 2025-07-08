@@ -1,5 +1,11 @@
 class highlambder(object):
 
+    _attr_blocklist = {
+        "__getitem__",
+        "keys",
+        "__contains__",
+    }
+
     def __init__(self, ops=None, new=None):
         self._ops = [new or (lambda x: x)] + (ops or [])
 
@@ -59,6 +65,8 @@ class highlambder(object):
             new=lambda x: y / x)
 
     def __getattr__(self, y):
+        if y in highlambder._attr_blocklist:
+            raise AttributeError(f"Highlambder has no attribute {y}")
         return highlambder(
             ops=self._ops,
             new=lambda x: getattr(x, y))
@@ -68,8 +76,14 @@ class highlambder(object):
             ops=self._ops,
             new=lambda x: x[y])
 
-    def __array__(self, dtype=None):
-        return self._ops
+    # def __array__(self, dtype=None):
+    #     return self._ops
+
+    def __contains__(self, y):
+        raise NotImplementedError('__contains__ not supported')
+
+    def __len__(self, y):
+        raise NotImplementedError('__len__ not supported')
 
 
 L = highlambder()

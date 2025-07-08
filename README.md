@@ -43,10 +43,12 @@ from highlambder import L as λ
 
 (λ + λ) (2)  # -> 4
 
+map(λ * 2, range(5)) # -> [0, 2, 4, 6, 8]
+
 ("It's a Me, " + λ) ('Mario!') # ->  'It's a Me, Mario!'
 ```
 
-## Work-in-progress: pandas and NumPy support
+## pandas and NumPy support (partially supported, work-in-progress)
 
 ```python
 import pandas as pd
@@ -54,6 +56,12 @@ import numpy as np
 from highlambder import L as λ
 
 # pandas:
+s = pd.Series([1, 2, 3, 4])
+assert pd.Series.equals(
+    2 * s,
+    s.map(2 * λ),
+)
+
 df = pd.DataFrame({
     'A': [1, 1, 2, 2],
     'B': [5, 6, 7, 8],
@@ -62,25 +70,26 @@ df = pd.DataFrame({
 
 assert pd.DataFrame.equals(
     df.assign(D=lambda d: d.A + 20),
-    df.assign(D=λ.A + 20)
+    df.assign(D=λ.A + 20),
 )
 
 # String operations
 assert pd.DataFrame.equals(
     df.assign(D=lambda d: d['C'].str.len() * 2),
-    df.assign(D=λ['C'].str.len * 2)
+    df.assign(D=λ['C'].str.len * 2),
 )
 
 # NumPy:
-assert (λ + λ)(np.int64(2)) == 4
+assert (λ + 2)(np.int64(2)) == 4
 
-assert (λ.max - λ.min)(np.array([3, 4, 5, 6, 7, 8])) == 5
+assert (λ.max)(np.array([3, 4, 5, 6, 7, 8])) == 8
+
 ```
 
 ## Limitations (for now)
 
 - Only single-argument functions are supported.
-- len(L) is not supported due to Python's limitations on overriding __len__ without a concrete value.
+- Calling a function passing λ as an arument usually doesn't work. For example: `len(λ)`.
 
 These limitations may be lifted in future versions.
 

@@ -49,9 +49,12 @@ def test_all():
 
     assert (λ + λ)(2) == 4
 
-    print('ciao')
+    assert ('ciao ' + λ)('Mario') == 'ciao Mario'
 
     if False:
+
+        # Work in progress
+
         import pandas as pd
         import numpy as np
 
@@ -76,7 +79,7 @@ def test_all():
             df.assign(D=λ['C'].str.len * 2)
         )
 
-        assert (λ + λ)(np.int64(2)) == 4
+        assert (λ + 2)(np.int64(2)) == 4
 
         assert (λ.max - λ.min)(np.array([3, 4, 5, 6, 7, 8])) == 5
 
@@ -85,7 +88,6 @@ def test_all():
             df.apply(lambda r: r['A'] + r['B'], axis=1)
         )
 
-        # strano comportamento di numpy:
         temp = {
             'A': np.array([3, 4, 5, 6, 7, 8]),
             'B': np.array([3, 4, 5, 6, 7, 8]),
@@ -103,9 +105,6 @@ def test_all():
         )
 
         #######################
-
-        # NOTE:
-        assert ('ciao ' + λ)('Dario') == 'ciao Dario'
 
         # TODO:
         # assert (λ1 + λ2)(3, 4) == 7
