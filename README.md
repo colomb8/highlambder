@@ -8,9 +8,9 @@ Make your anonymous functions shorter, more expressive, and (let's be honest) ju
 
 ## What is Highlambder?
 
-**Highlambder** lets you write more elegant and compact code by replacing Python’s `lambda` keyword with something cleaner and more intuitive: a symbolic placeholder that behaves like a function.
+**Highlambder** is an experimental library that lets you write more elegant and compact code by replacing Python’s `lambda` syntax with something shorter: a symbolic placeholder that behaves like a function.
 
-You get concise, readable lambdas with operator overloading — no more `lambda x:` boilerplate.
+In practice, `lambda x: x + 1` can be written simply as `λ + 1`.
 
 ## Installation
 
