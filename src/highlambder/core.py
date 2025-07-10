@@ -115,8 +115,8 @@ class highlambder(object):
     # Misc --------------------------------------------------------------------
 
     _attr_blocklist = {
-        "__getitem__",
         "keys",
+        "__getitem__",
         "__contains__",
     }
 
@@ -138,6 +138,9 @@ class highlambder(object):
             new=lambda x: str(x))
 
     # Not supported special methods -------------------------------------------
+
+    def __iter__(self):
+        raise NotImplementedError('__iter__ not supported')
 
     def __contains__(self):
         raise NotImplementedError('__contains__ not supported')
